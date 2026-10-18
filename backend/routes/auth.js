@@ -9,7 +9,6 @@ const makeToken = (user) =>
 
 const publicUser = (u) => ({ id: u._id, name: u.name, email: u.email });
 
-// REGISTRASI
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -30,7 +29,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// LOGIN
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -47,7 +45,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// DATA USER YANG SEDANG LOGIN
 router.get("/me", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
