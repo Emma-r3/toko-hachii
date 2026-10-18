@@ -6,6 +6,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { useAuth } from "./context/AuthContext.jsx";
+import RouteTracker from "./components/RouteTracker.jsx";
 
 export default function App() {
   const { user, logout } = useAuth();
@@ -18,6 +19,7 @@ export default function App() {
 
   return (
     <>
+      <RouteTracker />
       <header className="nav">
         <Link to="/" className="brand">
           <img src="/images/logo.jpg" alt="Logo Toko Hachii" className="brand-logo" />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getProduct } from "../api.js";
+import { trackEvent } from "../analytics.js";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -12,6 +13,10 @@ export default function ProductDetail() {
       .then((data) => setP(data))
       .catch(() => setError("Produk tidak ditemukan."));
   }, [id]);
+
+  useEffect(() => {
+    if (p) trackEvent("view_item", { item_id: p._id, item_name: p.name });
+  }, [p]);
 
   if (error) return <p>{error} <Link to="/products">Kembali</Link></p>;
   if (!p) return <p>Memuat...</p>;
